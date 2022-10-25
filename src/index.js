@@ -1,44 +1,41 @@
-import { getEnabledCategories } from "trace_events"
+const $ = (name) => document.querySelector(name);
 
-const $ = (name) => document.querySelector(name)
-const inputName = $("#input-name")
-const btnCreate = $("#btn-create")
-const data ={}
+const inputName = $("#input-name");
+const btnCreate = $("#btn-create");
+const tbody = $("#tbody");
+
+const data = {};
 
 inputName.onkeyup = function (event) {
-    console.log()
-    data.name = event.target.value
+  data.name = event.target.value;
+};
+
+async function getCategories() {
+  try {
+    const result = await get("/category");
+    result.forEach((category) => renderRow(category));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-async function getCategories(){
-    try{
-        const response = await fetch("http://localhost:3000/api/category");
-        const result = await response.json()
-        result.data.forEach(element => {
-            
-        });
-        
-        console.log(result)
-    }catch(error){
-        console.log(error)
-    }
-}
+getCategories();
 
-btnCreate.onclick = async function(){
-    try{
-        const response = await fetch("http://localhost:3000/api/category",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-        const result = await response.json()
-        console.log(result)
+btnCreate.onclick = async function () {
+  try {
+    const result = await post("/category", data);
+    inputName.value = "";
+    renderRow(result);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-        inputName.value=""
-    }catch(error){
-        console.log(error)
-    }
+function renderRow(category) {
+  tbody.innerHTML += `
+        <tr>
+          <td>${category.id}</td>
+          <td>${category.name}</td>
+        </tr>
+      `;
 }

@@ -14,28 +14,27 @@
   </head>
   <body>
     <div class="container mt-5">
-      <form>
-        <div class="row">
-          <div class="col-12">
-            <h3>Crear Categoria</h3>
-          </div>
-          <div class="col-6">
-            <input
-              id="input-name"
-              type="text"
-              placeholder="Ingresa el nombre del la categoria"
-              name="name"
-              class="form-control"
-            />
-          </div>
-          <div class="col-6">
-            <button class="btn btn-primary">Crear</button>
-          </div>
+      <div class="row">
+        <div class="col-12">
+          <h3>Crear Categoria</h3>
         </div>
-      </form>
+        <div class="col-6">
+          <input
+            id="input-name"
+            type="text"
+            placeholder="Ingresa el nombre del la categoria"
+            name="name"
+            class="form-control"
+          />
+        </div>
+        <div class="col-6">
+          <button id="btn-create" class="btn btn-primary">Crear</button>
+        </div>
+      </div>
       <div class="table-responsive mt-5">
         <table class="table table-bordered table-hover">
           <thead>
+            <th>id</th>
             <th>Nombre</th>
           </thead>
           <tbody id="tbody"></tbody>
@@ -47,6 +46,7 @@
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
+    <script src="./src/service.js"></script>
     <script src="./src/index.js"></script>
   </body>
 </html>
