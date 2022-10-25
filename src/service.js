@@ -1,4 +1,4 @@
-const urlbase = "http://localhost:3000/api";
+const urlbase = "http://127.0.0.1:3000/api";
 
 async function get(url) {
   try {
